@@ -14,7 +14,6 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,41 +28,38 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QLabel *label_5;
-    QStatusBar *statusbar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(506, 341);
-        MainWindow->setMinimumSize(QSize(506, 341));
-        MainWindow->setMaximumSize(QSize(506, 341));
+        MainWindow->resize(336, 214);
+        MainWindow->setMinimumSize(QSize(336, 214));
+        MainWindow->setMaximumSize(QSize(336, 214));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         label = new QLabel(centralwidget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(120, 30, 271, 71));
+        label->setGeometry(QRect(30, 0, 271, 71));
         label->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label->setScaledContents(true);
         okButton = new QPushButton(centralwidget);
         okButton->setObjectName(QString::fromUtf8("okButton"));
-        okButton->setGeometry(QRect(190, 240, 121, 71));
+        okButton->setGeometry(QRect(140, 180, 51, 31));
         label_2 = new QLabel(centralwidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(130, 110, 281, 16));
+        label_2->setGeometry(QRect(30, 80, 281, 16));
         label_3 = new QLabel(centralwidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
-        label_3->setGeometry(QRect(130, 140, 281, 16));
+        label_3->setGeometry(QRect(30, 100, 281, 16));
         label_4 = new QLabel(centralwidget);
         label_4->setObjectName(QString::fromUtf8("label_4"));
-        label_4->setGeometry(QRect(130, 170, 941, 16));
+        label_4->setGeometry(QRect(30, 120, 941, 16));
         label_5 = new QLabel(centralwidget);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setGeometry(QRect(130, 200, 281, 16));
+        label_5->setGeometry(QRect(30, 140, 281, 16));
+        label_5->setMaximumSize(QSize(281, 16));
         MainWindow->setCentralWidget(centralwidget);
-        statusbar = new QStatusBar(MainWindow);
-        statusbar->setObjectName(QString::fromUtf8("statusbar"));
-        MainWindow->setStatusBar(statusbar);
 
         retranslateUi(MainWindow);
 

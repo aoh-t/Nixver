@@ -5,8 +5,10 @@
 #include <QPixmap>
 #include <unistd.h>
 #include <sys/utsname.h>
+#include <QPushButton>
 
 #include "ui_Qt.h"
+
 
 QString get_os_release_value(const QString& key) {
     QFile file("/etc/os-release");
@@ -53,23 +55,25 @@ int main(int argc, char *argv[]) {
     QString kernel = (uname(&buffer) == 0) ? buffer.release : "Unknown Kernel";
 
     QString prettyName = get_os_release_value("PRETTY_NAME");
-    if (prettyName.isEmpty()) prettyName = "EndeavourOS Linux";
-
+    QString ID = get_os_release_value("LOGO");
     QString docUrl = get_os_release_value("DOCUMENTATION_URL");
-    if (docUrl.isEmpty()) docUrl = "https://endeavouros.com";
 
-        QString theme = is_dark_theme() ? "dark" : "light";
-    QString logoPath = QString("/usr/share/pixmaps/endeavouros-logo-text-%1.svg").arg(theme);
-    if (!QFile::exists(logoPath)) {
-        logoPath = QString("/usr/share/pixmaps/endeavouros-logo-text-%1.png").arg(theme);
+    QString theme = is_dark_theme() ? "dark" : "light";
+
+    QIcon icon = QIcon::fromTheme(ID + "-logo-text-" + theme);
+    if (icon.isNull()) {
+        icon = QIcon("/usr/share/pixmaps/" + ID + "-logo-text-" + theme + ".svg");
     }
 
-    QPixmap logo(logoPath);
+    QPixmap logo = icon.pixmap(ui.label->size());
+
     if (!logo.isNull() && ui.label) {
         ui.label->setPixmap(logo.scaled(ui.label->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+        ui.label->setScaledContents(false);
+        ui.label->setAlignment(Qt::AlignCenter);
     }
 
-    if (ui.label_2) ui.label_2->setText("<b>Name:</b> " + prettyName + " GNU/Linux");
+    if (ui.label_2) ui.label_2->setText("<b>Name:</b> " + prettyName);
     if (ui.label_3) ui.label_3->setText("<b>Kernel:</b> " + kernel);
 
     if (ui.label_4) {
@@ -85,8 +89,12 @@ int main(int argc, char *argv[]) {
         QObject::connect(ui.okButton, &QPushButton::clicked, window, &QMainWindow::close);
     }
 
-    window->setWindowTitle("About GNU/Linux");
+    window->setWindowTitle("About " + prettyName);
     window->show();
 
     return app.exec();
 }
+
+//"UNIX-Like OS Version Information Software (Nixver) 1.1.0"
+//credits: ace: lead
+//disc: partially made with generative AI
