@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Nixver
+GenericName=UNIX-Like OS Version Information Software
+Comment=Winver for GNU/Linux
+Exec=/bin/nixver
+Icon=/usr/share/pixmaps/nixver.png
+Terminal=false
+Categories=System
