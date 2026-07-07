@@ -1,0 +1,28 @@
+# Maintainer: Your Name <your.email@example.com>
+pkgname=nixver
+pkgver=1.2.0.5
+pkgrel=1
+pkgdesc="UNIX-Like OS Version Information Software"
+arch=('x86_64')
+url="https://github.com/aoh-t/Nixver"
+license=('GPL3')
+depends=('qt6-base')
+makedepends=('cmake' 'make' 'gcc')
+source=("${pkgname}-${pkgver}.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+    qmake nixver.pro
+    make
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgver}"
+
+    install -Dm755 nixver "${pkgdir}/usr/bin/nixver"
+
+    install -Dm644 "nixver.desktop" "${pkgdir}/usr/share/applications/nixver.desktop"
+
+    install -Dm644 "nixver.png" "${pkgdir}/usr/share/pixmaps/nixver.png"
+}
