@@ -1,3 +1,5 @@
 Release 1.2.0 and on will be hosted on the AUR, the github repo exists for source code uploads, no binaries will be released here after the AUR reopens account registration
 
 You can download the package file (arch) from the releases tab every new release but when the AUR opens back up the package will only be released on the AUR
+
+To compile download the .zip file, go into the src/nixver-1.2.0 directory, qmake, make, this wont install it to your system, for installation please use the .pkg.tar.zst package
